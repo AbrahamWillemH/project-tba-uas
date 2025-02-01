@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Turing Machine Execution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../static/style.css"></link>
+</head>
+
+<body class="bg-[#0f0f0f] text-white">
+  <div class="container">
+    <div class="title flex flex-col justify-center items-center py-10 bg-black">
+      <h1 class="font-bold text-5xl">Turing Machine to Calculate</h1>
+      <h1 class="font-bold text-5xl">(m+n)^a/b</h1>
+    </div>
+    <div class="pb-40">
+      <div class="flex flex-col justify-center items-center text-center min-h-80">
+        <h2 class="font-semibold text-2xl mt-10">Input Tape</h2>
+        <form action="/" method="post" class="flex flex-col">
+          <input type="text" name="input_tape" class="text-black mt-2" required>
+          <p class="mt-2">Input format: 0^m10^n10^x10^y1</p>
+          <p class="mt-2">Expl.:</p>
+          <p class="mt-2">0^m = Addend</p>
+          <p class="mt-2">0^n = Addend</p>
+          <p class="mt-2">0^x = Exponent</p>
+          <p class="mt-2">0^y = Divisor</p>
+          <p class="mt-2">1 = Separator</p>
+          <button type="submit" class="bg-[#7622a1] px-4 py-2 mt-4 mb-10 rounded-md">Execute</button>
+        </form>
+      </div>
+      {%if result%}
+      
+      <div id="result-1" class="flex flex-col items-center text-center bg-[#292929] mx-40 py-4 rounded-2xl border border-[#7622a1]">
+        <h2 class="font-semibold text-xl">Initial Tape:</h2>
+        <p>{{ result.initial_tape }}</p>
+  
+        <h2 class="font-semibold text-xl mt-4">Final Tape:</h2>
+        <p>Tape 1: {{ result.final_tape1 }}</p>
+        <p>Tape 2: {{ result.final_tape2 }}</p>
+        <p>Tape 3: {{ result.final_tape3 }}</p>
+      </div>
+      <div id="result-2" class="flex flex-col items-center text-center bg-[#292929] mx-40 py-4 mt-10 rounded-2xl border border-[#7622a1]">
+        {% if result.result_message %}
+        <h2 class="font-semibold text-xl">Result:</h2>
+        <p class="text-2xl">{{ result.result_message }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="flex justify-center items-center text-center mt-20">
+        <img src="../static/images/tm_multitape.svg" class="w-[900px] rounded-2xl border border-[#7622a1]" alt="State Diagram"></img>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

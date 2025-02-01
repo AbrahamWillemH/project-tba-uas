@@ -1,0 +1,48 @@
+' '
+q0*  # Initial state
+    '0' 'B' > q1
+
+q1  # Move to the end of base
+    '0' '0' > q1
+    '1' 'B' > q2
+
+q2  # Move to the end of exponent
+    '0' '0' > q2
+    ' ' 'B' < q3
+
+q3  # Move back to the base area
+    '0' '0' < q3
+    'B' 'B' < q4
+
+q4  # Move to the beginning of base and count base
+    'B' 'B' > q5
+    '0' 'X' > q6
+
+q5
+    'X' 'X' > q5
+    'Y' 'Y' > q5
+    ' ' ' ' > q_accept  # Accept if no more 0s in the exponent area
+
+q6  # Mark a 0 in the base and move to the exponent area
+    '0' 'X' > q7
+
+q7  # Move to the beginning of exponent
+    'Y' 'Y' > q7
+    ' ' ' ' < q8
+
+q8  # Move back to the beginning of base to find the next 0
+    '0' '0' < q8
+    'X' 'X' > q9
+
+q9  # Move back to the exponent to continue the process
+    '0' '0' > q7
+    'Y' 'Y' > q9
+    ' ' ' ' < q10
+
+q10  # Move to the start of the tape
+    'X' 'X' < q10
+    'B' 'B' < q4
+
+q_accept.  # Accept state
+    'X' '0' > q_accept
+    'Y' '0' > q_accept

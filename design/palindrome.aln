@@ -1,0 +1,35 @@
+# This is a definition of a Turing Machine that accepts binary strings that are palindromes
+' '
+q0*
+    'X' 'X' < q0
+    'Y' 'Y' < q0
+    '0' 'X' > q2
+    '1' 'Y' > q6
+    ' ' ' ' > q7
+q2                   # Starting with 0
+    '0' '0' > q2
+    '1' '1' > q2
+    ' ' ' ' < q3
+    'X' 'X' < q3
+    'Y' 'Y' < q3
+q6                   # Starting with 1
+    '0' '0' > q6
+    '1' '1' > q6
+    ' ' ' ' < q5
+    'X' 'X' < q5
+    'Y' 'Y' < q5
+q3
+    '0' 'X' < q4
+    'X' 'X' < q4
+q5
+    '1' 'Y' < q4
+    'Y' 'Y' < q4
+q4
+    '0' '0' < q4
+    '1' '1' < q4
+    ' ' ' ' > q0
+    'X' 'X' > q0
+    'Y' 'Y' > q0
+q7.
+    'X' '0' > q7
+    'Y' '1' > q7
